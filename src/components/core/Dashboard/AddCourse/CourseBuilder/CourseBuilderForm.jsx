@@ -37,7 +37,7 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      
+  
     } 
     else {
       result = await createSection(

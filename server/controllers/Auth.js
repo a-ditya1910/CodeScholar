@@ -14,7 +14,7 @@ exports.sendotp = async(req,res) => {
         const {email} = req.body;
 
         const checkUserPresent =  await User.findOne({email});
-    
+
         if(checkUserPresent){
             return res.status(401).json({
                 success:false,
@@ -183,6 +183,7 @@ exports.login = async(req,res) => {
             const token = jwt.sign(payload,process.env.JWT_SECRET,{
                 expiresIn:"2h",
             });
+            
 
             user.token = token;
             user.password = undefined;

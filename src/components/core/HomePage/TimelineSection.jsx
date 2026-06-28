@@ -27,7 +27,7 @@ const timeline = [
         heading: "Slove the problem",
         Description: "Code your way to a solution",
     },
-
+    
 ];
 
 const TimelineSection = () => {

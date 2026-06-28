@@ -11,7 +11,6 @@ import Error from "./Error"
 
 
 const Catalog = () => {
-
   const { loading } = useSelector((state) => state.profile)
   const { catalogName } = useParams()
   const [active, setActive] = useState(1)

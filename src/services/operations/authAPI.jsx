@@ -6,13 +6,13 @@ import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
 
 const {
-    SENDOTP_API,
-    SIGNUP_API,
-    LOGIN_API,
-    RESETPASSWORD_API,
-    RESETPASSTOKEN_API,
+  SENDOTP_API,
+  SIGNUP_API,
+  LOGIN_API,
+  RESETPASSWORD_API,
+  RESETPASSTOKEN_API,
 } = endpoints
-
+  
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")

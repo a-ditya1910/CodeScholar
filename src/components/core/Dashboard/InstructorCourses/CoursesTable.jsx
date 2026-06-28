@@ -138,6 +138,7 @@ export  default function CoursesTable ({courses,setCourses}) {
                                         btn1Handler: !loading
                                             ? () => handleCourseDelete(course._id)
                                             :() => {},
+                                        btn2Handler: () => setConfirmationModal(null),
                                     })
                                 }}
                                 title="Delete"

@@ -20,7 +20,7 @@ exports.capturePayment = async (req, res) => {
 
     let totalAmount = 0;
 
-    for (const course_id of courses) {
+    for (const course_id of courses) {  
         let course;
         try {
             course = await Course.findById(course_id);

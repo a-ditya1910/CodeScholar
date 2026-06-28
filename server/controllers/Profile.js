@@ -200,7 +200,7 @@ exports.getEnrolledCourses = async (req, res) => {
           courseID: userDetails.courses[i]._id,
           userId: userId,
         })
-
+        
         courseProgressCount = courseProgressCount?.completedVideos.length
 
         if (SubsectionLength === 0) {

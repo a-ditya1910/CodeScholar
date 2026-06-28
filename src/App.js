@@ -27,12 +27,14 @@ import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse"
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import ChatBot from "./components/common/ChatBot";
 
 function App() {
   const { user } = useSelector((state) => state.profile)
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar/>
+      <ChatBot/>
       <Routes>
         <Route path="/" element= {<Home/>}/>
 

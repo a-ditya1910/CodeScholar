@@ -51,7 +51,7 @@ exports.createCourse = async (req, res) => {
                 message: "All Fields are Mandatory",
             })
         }
-        if (!status || status === undefined) {
+        if(!status || status === undefined){
             status = "Draft"
         }
         // Check if the user is an instructor
@@ -390,7 +390,8 @@ exports.deleteCourse = async(req,res) => {
             })
         }
 
-        const studentsEnrolled = course.studentsEnrolled || [];
+        const studentsEnrolled = course.studentEnrolled || [];
+        console.log("studentsEnrolled",studentsEnrolled)
 
         for(const studentId of studentsEnrolled){
             await User.findByIdAndUpdate(studentId,{
@@ -403,7 +404,7 @@ exports.deleteCourse = async(req,res) => {
             const section = await Section.findById(sectionId)
             if(section){
                 const subSections = section.subSection 
-                for(const subSectionId of subSections){
+                for(const subSectionId of subSections){ 
                     await SubSection.findByIdAndDelete(subSectionId)
                 }
             }
