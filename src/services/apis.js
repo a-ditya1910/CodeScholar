@@ -62,3 +62,23 @@ export const studentEndpoints = {
 export const chatEndpoints = {
     CHAT_API: BASE_URL + "/chat/chat",
 }
+
+export const quizEndpoints = {
+    GENERATE_QUIZ_API: BASE_URL + "/quiz/generate",
+}
+
+export const liveClassEndpoints = {
+    CREATE_LIVE_CLASS_API: BASE_URL + "/liveclass/create",
+    MY_LIVE_CLASSES_API: BASE_URL + "/liveclass/myClasses",
+    JOIN_LIVE_CLASS_API: BASE_URL + "/liveclass/join",
+    DELETE_LIVE_CLASS_API: BASE_URL + "/liveclass/delete",
+}
+
+export const vdoCipherEndpoints = {
+    VIDEO_OTP_API: BASE_URL + "/vdocipher/otp",
+}
+
+export const videoStreamEndpoints = {
+    STREAM_TOKEN_API: BASE_URL + "/video/token",
+    STREAM_BASE: BASE_URL + "/video/stream/",
+}

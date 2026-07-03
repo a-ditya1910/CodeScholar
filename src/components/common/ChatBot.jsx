@@ -29,8 +29,8 @@ export default function ChatBot() {
   // Greeting depends on login state
   useEffect(() => {
     const greeting = user
-      ? `Hi ${user.firstName}! 👋 I'm the StudyNotion assistant. Ask me about courses, your lessons, or studying.`
-      : `Hi there! 👋 I'm the StudyNotion assistant. Ask me about our courses or studying. Log in to get help with your enrolled lessons.`;
+      ? `Hi ${user.firstName}! 👋 I'm the CodeScholar assistant. Ask me about courses, your lessons, or studying.`
+      : `Hi there! 👋 I'm the CodeScholar assistant. Ask me about our courses or studying. Log in to get help with your enrolled lessons.`;
     setMessages([{ role: "assistant", content: greeting }]);
   }, [user]);
 
@@ -101,7 +101,7 @@ export default function ChatBot() {
             <IoChatbubbleEllipsesOutline className="text-yellow-50" size={22} />
             <div>
               <p className="text-sm font-semibold text-richblack-5">
-                StudyNotion Assistant
+                CodeScholar Assistant
               </p>
               <p className="text-xs text-richblack-300">
                 Ask about courses & studying

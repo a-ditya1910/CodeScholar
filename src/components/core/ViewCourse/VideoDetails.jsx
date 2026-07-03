@@ -9,6 +9,10 @@ import { BigPlayButton, Player } from "video-react"
 import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI"
 import { updateCompletedLectures } from "../../../slices/viewCourseSlice"
 import IconBtn from "../../common/IconBtn"
+import AiQuiz from "./AiQuiz"
+import Watermark from "../../common/Watermark"
+import VdoPlayer from "./VdoPlayer"
+import { getStreamUrl } from "../../../services/operations/streamAPI"
 
 const VideoDetails = () => {
   const { courseId, sectionId, subSectionId } = useParams()
@@ -17,12 +21,14 @@ const VideoDetails = () => {
   const playerRef = useRef(null)
   const dispatch = useDispatch()
   const { token } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.profile)
   const { courseSectionData, courseEntireData, completedLectures } = useSelector((state) => state.viewCourse)
 
   const [videoData, setVideoData] = useState([])
   const [previewSource, setPreviewSource] = useState("")
   const [videoEnded, setVideoEnded] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [videoSrc, setVideoSrc] = useState("")
 
   console.log("completedlectures",completedLectures);
 
@@ -50,6 +56,16 @@ const VideoDetails = () => {
       }
     })()
   }, [courseSectionData, courseEntireData, location.pathname])
+
+  // fetch an authenticated proxy URL for the current lecture (non-DRM videos)
+  useEffect(() => {
+    setVideoSrc("")
+    if (videoData && videoData._id && !videoData.vdoCipherVideoId) {
+      getStreamUrl(courseId, videoData._id, token)
+        .then(setVideoSrc)
+        .catch((err) => console.error("stream url error:", err))
+    }
+  }, [videoData, courseId, token])
 
   const isFirstVideo = () => {
     const currentSectionIndx = courseSectionData.findIndex(
@@ -139,19 +155,22 @@ const VideoDetails = () => {
 
   return (
     <div className="flex flex-col gap-5 text-white">
+      <div className="relative" onContextMenu={(e) => e.preventDefault()}>
       {!videoData ? (
         <img
           src={previewSource}
           alt="Preview"
           className="h-full w-full rounded-md object-cover"
         />
+      ) : videoData?.vdoCipherVideoId ? (
+        <VdoPlayer courseId={courseId} videoId={videoData.vdoCipherVideoId} />
       ) : (
         <Player
           ref={playerRef}
           aspectRatio="16:9"
           playsInline
           onEnded={() => setVideoEnded(true)}
-          src={videoData?.videoUrl}
+          src={videoSrc}
         >
           <BigPlayButton position="center" />
           {videoEnded && (
@@ -206,9 +225,15 @@ const VideoDetails = () => {
           )}
         </Player>
       )}
+      {videoData && user && (
+        <Watermark text={`${user.email} · ${user._id}`} />
+      )}
+      </div>
 
       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
       <p className="pt-2 pb-6">{videoData?.description}</p>
+
+      <AiQuiz courseId={courseId} />
     </div>
   )
 }

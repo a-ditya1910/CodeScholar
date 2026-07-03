@@ -144,13 +144,17 @@ const enrollStudent = async (courses, userId, res) => {
                 { new: true }
             );
 
-            const emailResponse = await mailSender(
-                enrolledStudent.email,
-                `Successfully Enrolled into ${enrolledCourse.courseName}`,
-                courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudent.firstName}`)
-            );
-
-            console.log("Email Sent Successfully", emailResponse.response);
+            // enrollment email is non-critical - don't let it break the payment
+            try {
+                const emailResponse = await mailSender(
+                    enrolledStudent.email,
+                    `Successfully Enrolled into ${enrolledCourse.courseName}`,
+                    courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudent.firstName}`)
+                );
+                console.log("Email Sent Successfully", emailResponse?.response);
+            } catch (emailError) {
+                console.log("Enrollment email failed (non-fatal):", emailError.message);
+            }
         } catch (error) {
             console.log(error); // Correctly log the error
             return res.status(500).json({

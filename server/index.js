@@ -1,11 +1,18 @@
 const express = require("express");
 const app = express();
 
+// so req.ip is the real client IP behind a proxy (Render/Vercel/etc.)
+app.set("trust proxy", true);
+
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const chatRoutes = require("./routes/Chat");
+const quizRoutes = require("./routes/Quiz");
+const liveClassRoutes = require("./routes/LiveClass");
+const vdoCipherRoutes = require("./routes/VdoCipher");
+const videoStreamRoutes = require("./routes/VideoStream");
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -42,6 +49,10 @@ app.use("/api/v1/profile",profileRoutes);
 app.use("/api/v1/course",courseRoutes);
 app.use("/api/v1/payment",paymentRoutes);
 app.use("/api/v1/chat",chatRoutes);
+app.use("/api/v1/quiz",quizRoutes);
+app.use("/api/v1/liveclass",liveClassRoutes);
+app.use("/api/v1/vdocipher",vdoCipherRoutes);
+app.use("/api/v1/video",videoStreamRoutes);
 
 
 app.get("/", (req,res) => {

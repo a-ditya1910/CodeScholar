@@ -3,7 +3,7 @@ import {FaArrowRight} from "react-icons/fa"
 import { Link } from 'react-router-dom'
 import HighlightText from '../components/core/HomePage/HighlightText'
 import CTAButton from "../components/core/HomePage/Button"
-import Banner from "../assets/Images/banner.mp4"
+import HumanCoding from "../assets/Images/humancodingimage.avif"
 import CodeBlocks from '../components/core/HomePage/CodeBlocks'
 import TimelineSection from '../components/core/HomePage/TimelineSection'
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection'
@@ -33,12 +33,12 @@ const Home = () => {
             </Link>
 
             <div className='text-center text-4xl font-semibold '>
-                Empower Your Future with 
-                <HighlightText text={"Coding Skills"}/>
+                Learn, Build, and Grow with
+                <HighlightText text={"CodeScholar"}/>
             </div>
 
             <div className='w-[68%] text-center font-bold text-richblack-300 text-base mx-auto'>
-                With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors. 
+                CodeScholar brings expert-led courses, hands-on projects, and AI-powered practice together in one place, so you learn at your own pace and actually keep what you build.
             </div>
 
             <div className='flex flex-row gap-7'>
@@ -47,17 +47,16 @@ const Home = () => {
                 </CTAButton>
 
                 <CTAButton active={false} linkto={"/login"}>
-                    Book a Demo
+                    Explore Courses
                 </CTAButton>
             </div>
 
             <div className='shadow-blue-200 mx-3 my-7 shadow-[10px_-5px_50px_-5px]'>
-                <video className='shadow-[20px_20px_rgba(255,255,255)]'
-                muted
-                loop
-                autoPlay>
-                    <source src={Banner} type='video/mp4'/>
-                </video>
+                <img
+                    src={HumanCoding}
+                    alt="Coding"
+                    className='rounded-md shadow-[20px_20px_rgba(255,255,255)]'
+                />
             </div>
 
             {/* Code Section 1 */}
@@ -66,13 +65,13 @@ const Home = () => {
                     position={"lg:flex-row flex-col"}
                     heading={
                         <div className='text-4xl font-semibold'>
-                            Unlock Your
+                            Grow your
                             <HighlightText text={"coding potential "}/>
-                            with our online courses
+                            with project-based lessons
                         </div>
                     }
                     subheading={
-                        "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+                        "Every course is built and taught by working engineers, so you pick up the practical, up-to-date skills that real teams use daily."
                     }
                     ctabtn1={
                         {
@@ -188,13 +187,13 @@ const Home = () => {
 
                 <div className="mb-10 mt-[-100px] flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
                     <div className='text-4xl font-semibold lg:w-[45%]'>
-                        Get the Skills you need for a
-                        <HighlightText text={"Job that is in demand"} />
+                        Gain the skills that get you
+                        <HighlightText text={"hired faster"} />
                     </div>
 
                     <div className='flex flex-col gap-10 lg:w-[40%] items-start '>
                         <div className='text-[16px]'>
-                            The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                            The tech world moves fast. CodeScholar focuses on practical, job-ready skills over pure theory, so you stay a step ahead of the curve.
                         </div>
 
                         <CTAButton active={true} linkto={"/signup"}>
@@ -216,7 +215,7 @@ const Home = () => {
         <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
             <InstructorSection />
 
-            <h2 className='text-center text-4xl font-semibold mt-10'>Review from other learners</h2>
+            <h2 className='text-center text-4xl font-semibold mt-10'>What our learners say</h2>
 
             <ReviewSlider />
         </div>

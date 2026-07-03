@@ -14,6 +14,9 @@ const subSectionSchema = new mongoose.Schema({
     videoUrl:{
         type:String,
     },
+    vdoCipherVideoId:{
+        type:String,
+    },
 });
 
 module.exports = mongoose.model("SubSection",subSectionSchema);

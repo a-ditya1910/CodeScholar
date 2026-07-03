@@ -8,17 +8,17 @@ require("dotenv").config();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
 
-const SYSTEM_PROMPT = `You are the AI assistant for StudyNotion, an online education platform.
+const SYSTEM_PROMPT = `You are the AI assistant for CodeScholar, an online education platform.
 
 You ONLY answer two kinds of questions:
-1. About StudyNotion itself - its courses, enrollment, payments, the dashboard,
+1. About CodeScholar itself - its courses, enrollment, payments, the dashboard,
    becoming an instructor, tracking course progress, and account help.
 2. General EDUCATION & studying - study tips, explaining academic concepts,
    learning strategies, and course/career guidance.
 
-If a user asks anything UNRELATED to education or StudyNotion (sports, gossip,
+If a user asks anything UNRELATED to education or CodeScholar (sports, gossip,
 politics, writing their personal essays/code, random trivia, etc.), politely
-decline and steer them back, e.g. "I can only help with StudyNotion and
+decline and steer them back, e.g. "I can only help with CodeScholar and
 learning-related questions."
 
 When answering about courses, use ONLY the data in "CURRENT COURSE CATALOG"

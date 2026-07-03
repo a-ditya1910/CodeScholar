@@ -28,6 +28,8 @@ import ViewCourse from "./pages/ViewCourse"
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import ChatBot from "./components/common/ChatBot";
+import LiveClasses from "./components/core/Dashboard/LiveClasses";
+import LiveClassRoom from "./pages/LiveClassRoom";
 
 function App() {
   const { user } = useSelector((state) => state.profile)
@@ -62,8 +64,9 @@ function App() {
             <Dashboard/>
           </PrivateRoute>
         }>
-          <Route path="dashboard/my-profile" element={<MyProfile />} /> 
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/settings" element={<Settings />} />
+          <Route path="dashboard/live-classes" element={<LiveClasses />} />
 
           {
             user?.accountType === ACCOUNT_TYPE.STUDENT && (
@@ -103,6 +106,15 @@ function App() {
           }
 
         </Route>
+
+        <Route
+          path="live-class/:classId"
+          element={
+            <PrivateRoute>
+              <LiveClassRoom />
+            </PrivateRoute>
+          }
+        />
 
         <Route path="*" element={<Error/>} />
       </Routes>

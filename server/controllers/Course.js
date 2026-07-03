@@ -335,11 +335,20 @@ exports.getFullCourseDetails = async (req, res) => {
       })
   
       const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
-  
+
+      // strip raw video URLs so they never reach the browser; videos are served
+      // through the authenticated proxy (/api/v1/video/stream) instead
+      const sanitized = courseDetails.toObject()
+      sanitized.courseContent.forEach((content) => {
+        content.subSection.forEach((sub) => {
+          delete sub.videoUrl
+        })
+      })
+
       return res.status(200).json({
         success: true,
         data: {
-          courseDetails,
+          courseDetails: sanitized,
           totalDuration,
           completedVideos : courseProgressCount?.completedVideos
             ? courseProgressCount?.completedVideos

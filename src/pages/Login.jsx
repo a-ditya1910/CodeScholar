@@ -1,4 +1,4 @@
-import loginImg from "../assets/Images/login.webp"
+import loginImg from "../assets/Images/coding-for-kids-complete-guide.png"
 import Template from "../components/core/Auth/Template"
 
 function Login() {
