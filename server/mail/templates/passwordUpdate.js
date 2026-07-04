@@ -1,75 +1,24 @@
 exports.passwordUpdated = (email, name) => {
 	return `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>Password Update Confirmation</title>
-        <style>
-            body {
-                background-color: #ffffff;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.4;
-                color: #333333;
-                margin: 0;
-                padding: 0;
-            }
-    
-    
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-    
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
-    
-            .message {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-    
-            .body {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-    
-            .support {
-                font-size: 14px;
-                color: #999999;
-                margin-top: 20px;
-            }
-    
-            .highlight {
-                font-weight: bold;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <a href="https://codescholar-edtech-project.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="CodeScholar Logo"></a>
-            <div class="message">Password Update Confirmation</div>
-            <div class="body">
-                <p>Hey ${name},</p>
-                <p>Your password has been successfully updated for the email <span class="highlight">${email}</span>.
-                </p>
-                <p>If you did not request this password change, please contact us immediately to secure your account.</p>
-            </div>
-            <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
-                at
-                <a href="mailto:info@codescholar.com">info@codescholar.com</a>. We are here to help!
-            </div>
-        </div>
-    </body>
-    
-    </html>`;
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Password Update Confirmation</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f2fb; font-family:Arial, Helvetica, sans-serif; color:#1d1633;">
+	<div style="max-width:520px; margin:24px auto; background-color:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e6e1f2;">
+		<div style="background-color:#4c1d95; padding:22px; text-align:center;">
+			<span style="color:#ffffff; font-size:22px; font-weight:bold; letter-spacing:0.5px;">Code<span style="color:#a78bfa;">Scholar</span></span>
+		</div>
+		<div style="padding:28px;">
+			<h1 style="font-size:20px; margin:0 0 16px 0; color:#1d1633; text-align:center;">Password updated</h1>
+			<p style="font-size:15px; color:#5b5378; line-height:1.6; margin:0 0 12px;">Hey ${name},</p>
+			<p style="font-size:15px; color:#5b5378; line-height:1.6; margin:0 0 12px;">Your password was successfully updated for <b style="color:#4c1d95;">${email}</b>.</p>
+			<p style="font-size:14px; color:#8a83a3; line-height:1.6; margin:0;">If you did not request this change, please contact us immediately to secure your account.</p>
+		</div>
+		<div style="background-color:#faf8ff; padding:16px; text-align:center; font-size:12px; color:#8a83a3;">Need help? <a href="mailto:info@codescholar.com" style="color:#7c4dff; text-decoration:none;">info@codescholar.com</a> &nbsp;&middot;&nbsp; &copy; CodeScholar</div>
+	</div>
+</body>
+</html>`;
 };

@@ -74,7 +74,8 @@ export function signUp(
       }
       
       toast.success("Signup Sucessfully")
-      navigate("/login")
+      // auto log the user in so they land on the dashboard, not the login page
+      dispatch(login(email, password, navigate))
     }
     catch(error){
       console.log("signup api error....",error)
