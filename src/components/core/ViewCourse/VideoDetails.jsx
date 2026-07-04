@@ -12,7 +12,7 @@ import IconBtn from "../../common/IconBtn"
 import AiQuiz from "./AiQuiz"
 import Watermark from "../../common/Watermark"
 import VdoPlayer from "./VdoPlayer"
-import { getStreamUrl } from "../../../services/operations/streamAPI"
+import { getStreamBlobUrl } from "../../../services/operations/streamAPI"
 
 const VideoDetails = () => {
   const { courseId, sectionId, subSectionId } = useParams()
@@ -57,13 +57,21 @@ const VideoDetails = () => {
     })()
   }, [courseSectionData, courseEntireData, location.pathname])
 
-  // fetch an authenticated proxy URL for the current lecture (non-DRM videos)
+  // load the lecture video via an authenticated request into a page-scoped blob
+  // (non-DRM videos). A copied URL / incognito can't reproduce the auth header.
   useEffect(() => {
+    let objectUrl
     setVideoSrc("")
     if (videoData && videoData._id && !videoData.vdoCipherVideoId) {
-      getStreamUrl(courseId, videoData._id, token)
-        .then(setVideoSrc)
-        .catch((err) => console.error("stream url error:", err))
+      getStreamBlobUrl(courseId, videoData._id, token)
+        .then((url) => {
+          objectUrl = url
+          setVideoSrc(url)
+        })
+        .catch((err) => console.error("stream error:", err))
+    }
+    return () => {
+      if (objectUrl) URL.revokeObjectURL(objectUrl)
     }
   }, [videoData, courseId, token])
 

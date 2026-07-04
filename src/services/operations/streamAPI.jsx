@@ -1,20 +1,17 @@
-import { apiConnector } from "../apiconnector";
-import { videoStreamEndpoints } from "../apis";
+import { BASE_URL } from "../apis";
 
-const { STREAM_TOKEN_API, STREAM_BASE } = videoStreamEndpoints;
-
-// Returns a proxied, authenticated stream URL for a lecture. The raw Cloudinary
-// URL is never exposed; the returned URL carries a short-lived token.
-export async function getStreamUrl(courseId, subSectionId, token) {
-  const headers = token ? { Authorization: `Bearer ${token}` } : null;
-  const res = await apiConnector(
-    "POST",
-    STREAM_TOKEN_API,
-    { courseId, subSectionId },
-    headers
+// Loads a lecture's video through an authenticated request (JWT in the header)
+// and returns a page-scoped blob URL. A copied URL / incognito has no auth
+// header, so it gets 401 and cannot load or download the video. The blob URL
+// only exists inside this logged-in page and can't be opened anywhere else.
+export async function getStreamBlobUrl(courseId, subSectionId, token) {
+  const res = await fetch(
+    `${BASE_URL}/video/stream/${subSectionId}?courseId=${courseId}`,
+    { headers: { Authorization: `Bearer ${token}` } }
   );
-  if (!res?.data?.success) {
-    throw new Error(res?.data?.message || "Could not load video");
+  if (!res.ok) {
+    throw new Error("Could not load video");
   }
-  return `${STREAM_BASE}${subSectionId}?vt=${res.data.streamToken}`;
+  const blob = await res.blob();
+  return URL.createObjectURL(blob);
 }

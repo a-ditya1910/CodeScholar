@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getStreamToken, streamVideo } = require("../controllers/VideoStream");
+const { streamVideo } = require("../controllers/VideoStream");
 const { auth } = require("../middlewares/auth");
 
-// mint a short-lived token (requires login + enrollment)
-router.post("/token", auth, getStreamToken);
-
-// stream the bytes using ?vt=<token> (the <video> element can't send headers)
-router.get("/stream/:subSectionId", streamVideo);
+// stream the bytes - requires a valid login token in the Authorization header,
+// so a copied URL / incognito (no auth) is rejected
+router.get("/stream/:subSectionId", auth, streamVideo);
 
 module.exports = router;

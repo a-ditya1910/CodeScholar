@@ -13,6 +13,7 @@ export default function Upload({
   setValue,
   errors,
   video = false,
+  required = true,
   viewData = null,
   editData = null,
 }) {
@@ -47,8 +48,8 @@ export default function Upload({
   }
 
   useEffect(() => {
-    register(name, { required: true })
-  }, [register])
+    register(name, { required })
+  }, [register, required])
 
   useEffect(() => {
     setValue(name, selectedFile)
@@ -57,7 +58,7 @@ export default function Upload({
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-richblack-5" htmlFor={name}>
-        {label} {!viewData && <sup className="text-pink-200">*</sup>}
+        {label} {!viewData && required && <sup className="text-pink-200">*</sup>}
       </label>
 
       <div
