@@ -11,7 +11,6 @@ import { updateCompletedLectures } from "../../../slices/viewCourseSlice"
 import IconBtn from "../../common/IconBtn"
 import AiQuiz from "./AiQuiz"
 import Watermark from "../../common/Watermark"
-import VdoPlayer from "./VdoPlayer"
 import { getStreamBlobUrl } from "../../../services/operations/streamAPI"
 
 const VideoDetails = () => {
@@ -62,7 +61,7 @@ const VideoDetails = () => {
   useEffect(() => {
     let objectUrl
     setVideoSrc("")
-    if (videoData && videoData._id && !videoData.vdoCipherVideoId) {
+    if (videoData && videoData._id) {
       getStreamBlobUrl(courseId, videoData._id, token)
         .then((url) => {
           objectUrl = url
@@ -170,8 +169,6 @@ const VideoDetails = () => {
           alt="Preview"
           className="h-full w-full rounded-md object-cover"
         />
-      ) : videoData?.vdoCipherVideoId ? (
-        <VdoPlayer courseId={courseId} videoId={videoData.vdoCipherVideoId} />
       ) : (
         <Player
           ref={playerRef}

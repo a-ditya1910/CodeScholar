@@ -37,7 +37,7 @@
 | **Database** | MongoDB (Atlas) |
 | **AI** | Google Gemini API |
 | **Live video** | Jitsi Meet |
-| **Media / DRM** | Cloudinary, VdoCipher |
+| **Media** | Cloudinary |
 | **Payments** | Razorpay |
 | **Email** | Nodemailer (Gmail SMTP) |
 
@@ -52,8 +52,8 @@
 └─────────────┘               
                                        │
         ┌──────────────┬───────────────┼───────────────┬───────────────┐
-     Cloudinary     Razorpay         Gemini           Jitsi         VdoCipher
-     (media)       (payments)      (AI chat/quiz)   (live video)     (DRM)
+     Cloudinary     Razorpay         Gemini           Jitsi
+     (media)       (payments)      (AI chat/quiz)   (live video)
 ```
 
 - **Monorepo:** React app at the root, Express API in `/server`.
@@ -75,7 +75,7 @@
 │   └── utils/, hooks/, data/
 │
 └── server/                     # Express backend
-    ├── controllers/            # Auth, Course, Payments, Chat, Quiz, LiveClass, VideoStream, VdoCipher…
+    ├── controllers/            # Auth, Course, Payments, Chat, Quiz, LiveClass, VideoStream…
     ├── models/                 # Mongoose schemas
     ├── routes/                 # route definitions
     ├── middlewares/auth.js     # JWT verify + role guards
@@ -91,7 +91,7 @@
 ### Prerequisites
 - Node.js 18+
 - A MongoDB connection string
-- Accounts/keys for: Cloudinary, Razorpay (test), Google Gemini, a Gmail App Password (optional: VdoCipher)
+- Accounts/keys for: Cloudinary, Razorpay (test), Google Gemini, a Gmail App Password
 
 ### Install
 ```bash
@@ -128,8 +128,6 @@ RAZORPAY_SECRET=...
 
 GEMINI_API_KEY=...        # Google AI Studio
 GEMINI_MODEL=gemini-2.5-flash
-
-VDOCIPHER_API_SECRET=...  # optional, for DRM
 ```
 
 ### Run

@@ -74,11 +74,3 @@ export const liveClassEndpoints = {
     DELETE_LIVE_CLASS_API: BASE_URL + "/liveclass/delete",
 }
 
-export const vdoCipherEndpoints = {
-    VIDEO_OTP_API: BASE_URL + "/vdocipher/otp",
-}
-
-export const videoStreamEndpoints = {
-    STREAM_TOKEN_API: BASE_URL + "/video/token",
-    STREAM_BASE: BASE_URL + "/video/stream/",
-}

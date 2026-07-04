@@ -11,7 +11,6 @@ const courseRoutes = require("./routes/Course");
 const chatRoutes = require("./routes/Chat");
 const quizRoutes = require("./routes/Quiz");
 const liveClassRoutes = require("./routes/LiveClass");
-const vdoCipherRoutes = require("./routes/VdoCipher");
 const videoStreamRoutes = require("./routes/VideoStream");
 
 const database = require("./config/database");
@@ -51,7 +50,6 @@ app.use("/api/v1/payment",paymentRoutes);
 app.use("/api/v1/chat",chatRoutes);
 app.use("/api/v1/quiz",quizRoutes);
 app.use("/api/v1/liveclass",liveClassRoutes);
-app.use("/api/v1/vdocipher",vdoCipherRoutes);
 app.use("/api/v1/video",videoStreamRoutes);
 
 
