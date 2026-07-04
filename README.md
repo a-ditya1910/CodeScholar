@@ -22,10 +22,9 @@
 - Analytics dashboard (students, income, course stats)
 
 **Platform / security**
-- Authenticated **proxy video streaming** — the raw storage URL is never exposed
-- **IP-bound stream tokens** — copied links don't work on another device/network
-- **Dynamic watermark** (viewer email + id) over videos and live classes
-- **DRM (VdoCipher)** support for encrypted, download-proof lectures
+- **Authenticated blob streaming** — the video loads via a `fetch` with the JWT in the `Authorization` header (never in the URL) and plays from a page-scoped `blob:` URL, so a copied link or incognito tab has no auth and can't open or download it
+- The raw Cloudinary URL is **stripped from API responses** and only streamed through the backend after an enrollment check
+- **Dynamic watermark** (viewer email + id) over recorded videos and live classes
 
 ---
 
@@ -160,5 +159,4 @@ npm run dev      # runs client (:3000) + server (:4000) together
 | POST | `/chat/chat` | AI chatbot |
 | POST | `/quiz/generate` | AI quiz |
 | POST | `/liveclass/create` · `/liveclass/join` | Live classes |
-| POST/GET | `/video/token` · `/video/stream/:id` | Secure video streaming |
-| POST | `/vdocipher/otp` | DRM playback token |
+| GET | `/video/stream/:id` (JWT in `Authorization` header) | Secure video streaming (blob) |
